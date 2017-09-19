@@ -1,12 +1,12 @@
 INC_DIR = include
 
-all: exp
+all: hw1
 
-exp: mainExp.o Shapes.o Media.o
+hw1: mainExp.o Shapes.o Media.o
 ifeq (${OS}, Windows_NT)
-	g++ -o exp mainExp.o Shapes.o Media.o -lgtest
+	g++ -o hw1 mainExp.o Shapes.o Media.o -lgtest
 else
-	g++ -o exp mainExp.o Shapes.o Media.o -lgtest -lpthread
+	g++ -o hw1 mainExp.o Shapes.o Media.o -lgtest -lpthread
 endif
 	
 mainExp.o: mainExp.cpp exp.h
@@ -20,5 +20,5 @@ clean:
 ifeq (${OS}, Windows_NT)
 	del *.o *.exe
 else
-	rm -f *.o exp
+	rm -f *.o hw1
 endif
