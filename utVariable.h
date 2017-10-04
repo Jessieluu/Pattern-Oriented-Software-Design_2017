@@ -1,6 +1,6 @@
 #ifndef UTVARIABLE_H
 #define UTVARIABLE_H
-#include "variable.h"
+#include "include/variable.h"
 
 
 TEST(Variable, constructor){

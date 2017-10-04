@@ -1,4 +1,4 @@
-#include "madRace.h"
+#include "include/madRace.h"
 
 TEST(madRace, car) {
   MadCar madCar(30);
