@@ -3,6 +3,7 @@
 
 #include <string>
 #include "atom.h"
+#include "number.h"
 using std::string;
 
 class Atom;

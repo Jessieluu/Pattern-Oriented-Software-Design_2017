@@ -5,6 +5,7 @@
 #include "atom.h"
 #include "variable.h"
 using std::string;
+
 class Atom;
 class Variable;
 
