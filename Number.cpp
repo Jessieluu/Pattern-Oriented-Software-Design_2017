@@ -13,4 +13,4 @@ bool Number::match (Number num){ return _symbol == num.symbol();}
 
 bool Number::match (Atom atom){ return false;}
 
-bool Number::match (Variable & var){ return true;}
+bool Number::match (Variable & var){ return var.match(* this);}
