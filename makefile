@@ -12,11 +12,11 @@ endif
 main.o: main.cpp utTerm.h 
 	g++ -std=c++11 -c main.cpp
 Atom.o: $(INC_DIR)/atom.h Atom.cpp
-	g++ -std=gnu++0x -c Atom.cpp
+	g++ -std=c++11 -c Atom.cpp
 Number.o: $(INC_DIR)/number.h Number.cpp
-	g++ -std=gnu++0x -c Number.cpp
+	g++ -std=c++11 -c Number.cpp
 Variable.o: $(INC_DIR)/variable.h Variable.cpp
-	g++ -std=gnu++0x -c Variable.cpp
+	g++ -std=c++11 -c Variable.cpp
 
 
 clean:	
