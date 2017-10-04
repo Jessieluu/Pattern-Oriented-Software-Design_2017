@@ -12,7 +12,7 @@ class Number;
 class Variable{
 public: Variable(string s);
 
-public: string symbol();
+public: string value();
 
 public: bool match(Atom atom);
 

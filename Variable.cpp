@@ -4,7 +4,7 @@
 
 Variable::Variable (string s): _value(s) {}
 
-string Variable::symbol(){ return _value;}
+string Variable::value(){ return _value;}
 
 bool Variable::match(Atom atom){
     if(_assignable || _value == atom.symbol()){
