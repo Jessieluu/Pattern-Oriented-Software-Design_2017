@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
-#include "utMadRace.h"
+// #include "utAtom.h"
+// #include "utVariable.h"
+#include "utTerm.h"
 
 int main( int argc , char **argv )
 {
