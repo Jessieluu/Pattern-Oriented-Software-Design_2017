@@ -7,7 +7,7 @@
 
 TEST(Variable, constructor){
   Variable X("X");
-  ASSERT_EQ("X", X.value());
+  ASSERT_EQ("X", X.symbol());
 }
 
 TEST(Variable , matching){
@@ -108,13 +108,13 @@ TEST (Variable, num1_to_varZ_to_varX_and_varY_to_varX) {
 // Then #symbol() of Y should return "Y"
 // And #value() of Y should return "s(X)"
 TEST (Variable, Struct1) {
-  // Variable X("X");
-  // std::vector<Term *> v ={&X};
-  // Struct s(Atom("s"), v);
-  // Variable Y("Y");
-  // Y.match(s);
-  // ASSERT_EQ("Y",Y.symbol());
-  // ASSERT_EQ("s(X)",Y.value());  
+  Variable X("X");
+  std::vector<Term *> v ={&X};
+  Struct s(Atom("s"), v);
+  Variable Y("Y");
+  Y.match(s);
+  ASSERT_EQ("Y",Y.symbol());
+  ASSERT_EQ("s(X)",Y.value());  
 }
 
 // Give there is a Struct s contains Variable X
@@ -124,7 +124,15 @@ TEST (Variable, Struct1) {
 // Then #symbol() of Y should return "Y"
 // And #value() of Y should return "s(teddy)"
 TEST (Variable, Struct2) {
-  
+  Variable X("X");
+  Variable Y("Y");
+  Atom teddy("teddy");
+  std::vector<Term *> v ={&X};
+  Struct s(Atom("s"), v);
+  Y.match(s);
+  X.match(teddy);
+  ASSERT_EQ("Y", Y.symbol());
+  ASSERT_EQ("s(teddy)",Y.value()); //fail
 }
 
 #endif

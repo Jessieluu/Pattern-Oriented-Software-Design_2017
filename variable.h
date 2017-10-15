@@ -7,12 +7,11 @@
 #include "struct.h"
 using std::string;
 
-class Atom;
 class Number;
 
 class Variable : public Term{
 public:
-  Variable (string s): _value(s) {}
+  Variable (string s): _symbol(s) {}
 
   string symbol() const{ return _symbol;}
 

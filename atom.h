@@ -12,7 +12,7 @@ public:
 
   virtual string value() const{
     return symbol();
-  };
+  }
 
   virtual bool match(Term & term) {
     return symbol() == term.symbol();
