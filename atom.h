@@ -5,7 +5,6 @@
 
 using std::string;
 
-
 class Term{
 
 public:
