@@ -9,7 +9,7 @@ using std::string;
 
 class Number : public Term{
 public:
-    Number (double value):_symbol(to_string(value)),_value(to_string(value)) {}
+    Number (double value):_symbol(to_string(value)) {}
   
     string symbol() const{
         return _symbol;
