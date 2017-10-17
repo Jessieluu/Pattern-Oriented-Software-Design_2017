@@ -8,7 +8,13 @@ all: hw3
 # endif
  
 hw3: mainAtom.o
+
+ifeq (${OS}, Windows_NT)
+	g++ -o hw3 mainAtom.o -lgtest
+else
 	g++ -o hw3 mainAtom.o -lgtest -lpthread
+endif
+
 mainAtom.o: mainAtom.cpp utAtom.h atom.h utVariable.h variable.h utStruct.h struct.h number.h
 	g++ -std=gnu++0x -c mainAtom.cpp
 
