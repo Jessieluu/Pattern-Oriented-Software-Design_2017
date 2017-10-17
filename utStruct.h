@@ -98,7 +98,7 @@ TEST(Struct, var_match_atom)
   Atom tom("tom");
   std::vector<Term *> v ={&X};
   Struct s(Atom("s"), v);
-  EXPECT_TRUE(X.match(tom));
+  X.match(tom);
   ASSERT_EQ("s(X)",s.symbol());
   ASSERT_EQ("s(tom)",s.value());
 }
@@ -132,7 +132,7 @@ TEST(Struct, nested_struct2)
   Struct s2(Atom("s2"), v);
   std::vector<Term *> v2 = {&s2};
   Struct s1(Atom("s1"), v2);
-  EXPECT_TRUE(X.match(tom)); 
+  X.match(tom);
   ASSERT_EQ("s1(s2(X))",s1.symbol());
   ASSERT_EQ("s1(s2(tom))",s1.value());
 }
@@ -145,14 +145,15 @@ TEST(Struct, nested_struct2)
 TEST(Struct, nested_struct3)
 {
   Variable X("X");
+  string str = to_string(3.14);
   Number pi(3.14);
   std::vector<Term *> v ={&X};
   Struct s2(Atom("s2"), v);
   std::vector<Term *> v2 ={&s2};
   Struct s1(Atom("s1"), v2);
-  EXPECT_TRUE(X.match(pi));
+  X.match(pi);
   ASSERT_EQ("s1(s2(X))",s1.symbol());
-  ASSERT_EQ("s1(s2(3.14))",s1.value());
+  ASSERT_EQ("s1(s2("+str+"))",s1.value());
 }
 
 // Given there are Struct s1 contains Struct s2 and Variable X
@@ -172,6 +173,8 @@ TEST(Struct, nested_struct_and_multiVariable)
   Struct s1(Atom("s1"), v2);
   X.match(Y);
   X.match(kent_beck);
+  EXPECT_TRUE( X.match(Y));
+  EXPECT_TRUE( X.match(kent_beck));
   ASSERT_EQ("s1(s2(Y), X)",s1.symbol());
   ASSERT_EQ("s1(s2(kent_beck), kent_beck)", s1.value());
 }

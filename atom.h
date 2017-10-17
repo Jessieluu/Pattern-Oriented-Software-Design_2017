@@ -29,7 +29,7 @@ public:
   string symbol() const{
     return _symbol;
   }
-
+  
   string _symbol;
 };
 

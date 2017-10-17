@@ -14,6 +14,7 @@ TEST(Variable , matching){
   Atom tom("tom");
   Variable X("X");
   X.match(tom);
+  ASSERT_EQ( "X", X.symbol());
   ASSERT_EQ( "tom", X.value());
 }
 
@@ -30,6 +31,7 @@ TEST (Variable , haveValue){
 TEST(Variable , numE_to_varX){
   Variable X("X");
   Number E(2.7182);
+  X.match(E);
   EXPECT_TRUE(X.match(E));
 }
 
@@ -50,7 +52,8 @@ TEST (Variable, varY_to_varX_and_num1_to_varY) {
   Variable X("X");
   Variable Y("Y");
   Number E(1);
-  X.match(Y.match(E));
+  Y.match(E);
+  X.match(Y);
   EXPECT_TRUE(X.match(E));
 }
 
@@ -59,7 +62,8 @@ TEST (Variable, varY_to_varX_and_num1_to_varY) {
 TEST (Variable, varX_match_varX_and_num1_to_varX) {
   Variable X("X");
   Number E(1);
-  X.match(X.match(E));
+  X.match(E);  
+  X.match(X);
   EXPECT_TRUE(X.match(E));
 }
 
@@ -69,7 +73,8 @@ TEST (Variable, num1_to_varY_and_varX_match_varY) {
   Variable Y("Y");
   Variable X("X");
   Number E(1);
-  X.match(Y.match(E));
+  Y.match(E);
+  X.match(Y);
   EXPECT_TRUE(X.match(E));
 }
 
@@ -80,7 +85,9 @@ TEST (Variable, num1_to_varZ_to_varY_to_varX) {
   Variable Y("Y");
   Variable Z("Z");
   Number E(1);
-  X.match(Y.match(Z.match(E)));
+  Z.match(E);
+  Y.match(Z);
+  X.match(Y);
   EXPECT_TRUE(X.match(E));
   EXPECT_TRUE(Y.match(E));
   EXPECT_TRUE(Z.match(E));
@@ -93,7 +100,8 @@ TEST (Variable, num1_to_varZ_to_varX_and_varY_to_varX) {
   Variable Y("Y");
   Variable Z("Z");
   Number E(1);
-  X.match(Z.match(E));
+  Z.match(E);
+  X.match(Z);
   X.match(Y);
   EXPECT_TRUE(X.match(E));
   EXPECT_TRUE(Y.match(E));
@@ -125,10 +133,10 @@ TEST (Variable, Struct2) {
   Variable X("X");
   Variable Y("Y");
   Atom teddy("teddy");
+  X.match(teddy);
   std::vector<Term *> v ={&X};
   Struct s(Atom("s"), v);
   Y.match(s);
-  X.match(teddy);
   ASSERT_EQ("Y", Y.symbol());
   ASSERT_EQ("s(teddy)",Y.value()); //fail
 }
