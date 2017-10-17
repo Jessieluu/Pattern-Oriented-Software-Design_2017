@@ -1,9 +1,10 @@
+#pragma once
 #ifndef NUMBER_H
 #define NUMBER_H
 
 #include <string>
 #include "atom.h"
-#include "variable.h"
+// #include "variable.h"
 using namespace std;
 using std::string;
 

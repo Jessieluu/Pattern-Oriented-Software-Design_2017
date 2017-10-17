@@ -52,7 +52,6 @@ TEST (Variable, varY_to_varX_and_num1_to_varY) {
   Number E(1);
   X.match(Y.match(E));
   EXPECT_TRUE(X.match(E));
-  
 }
 
 // ?- X=X, X=1.
@@ -62,7 +61,6 @@ TEST (Variable, varX_match_varX_and_num1_to_varX) {
   Number E(1);
   X.match(X.match(E));
   EXPECT_TRUE(X.match(E));
-
 }
 
 // ?- Y=1, X=Y.

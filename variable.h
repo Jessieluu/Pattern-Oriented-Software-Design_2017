@@ -1,3 +1,4 @@
+#pragma once
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
@@ -18,8 +19,8 @@ public:
   string value() const { return _value;}
 
   bool match(Variable var){
-    if(_assignable || _value == var.symbol()){
-        _value = var.symbol();
+    if(_assignable || _value == var.value()){
+        _value = var.value();
         _assignable = false;
         return true;
     }
@@ -27,8 +28,8 @@ public:
 }
 
   bool match(Atom atom){
-      if(_assignable || _value == atom.symbol()){
-          _value = atom.symbol();
+      if(_assignable || _value == atom.value()){
+          _value = atom.value();
           _assignable = false;
           return true;
       }
@@ -36,17 +37,17 @@ public:
   }
 
   bool match(Number num){
-      if(_assignable || _value == num.symbol()){
-          _value = num.symbol();
-          _assignable = false;
-          return true;
-      }
-      return false;
+    if(_assignable || _value == num.value()){
+        _value = num.value();
+        _assignable = false;
+        return true;
+    }
+    return false;
   }
 
   bool match(Struct str){
-    if(_assignable || _value == str.symbol()){
-        _value = str.symbol();
+    if(_assignable || _value == str.value()){
+        _value = str.value();
         _assignable = false;
         return true;
     }

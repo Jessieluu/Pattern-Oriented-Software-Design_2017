@@ -9,7 +9,7 @@ all: hw3
 
 hw3: mainAtom.o
 	g++ -o hw3 mainAtom.o -lgtest -lpthread
-mainAtom.o: mainAtom.cpp utAtom.h atom.h utVariable.h variable.h #utStruct.h struct.h number.h
+mainAtom.o: mainAtom.cpp utAtom.h atom.h utVariable.h variable.h utStruct.h struct.h number.h
 	g++ -std=c++11 -c mainAtom.cpp
 
 # utVariable: mainVariable.o
@@ -45,6 +45,6 @@ mainAtom.o: mainAtom.cpp utAtom.h atom.h utVariable.h variable.h #utStruct.h str
 #list.o: list.h list.cpp term.h var.h
 #	g++ -std=c++11 -c list.cpp
 clean:
-	rm -f *.o hw3
+	rm -f *.o hw3 utAtom utStruct utVariable
 stat:
 	wc *.h *.cpp

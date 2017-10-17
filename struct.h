@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STRUCT_H
 #define STRUCT_H
 
@@ -26,8 +27,9 @@ public:
       ret += _args[i]-> symbol() + ", ";
     }
     ret += _args[_args.size()-1]-> symbol() + ")";
-    return  ret;
+    return ret;
   }
+
   bool match(Term &term){
     Struct * ps = dynamic_cast<Struct *>(&term);
     if (ps){
