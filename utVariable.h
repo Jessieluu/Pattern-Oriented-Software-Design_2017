@@ -138,7 +138,7 @@ TEST (Variable, Struct2) {
   Struct s(Atom("s"), v);
   Y.match(s);
   ASSERT_EQ("Y", Y.symbol());
-  ASSERT_EQ("s(teddy)",Y.value()); //fail
+  ASSERT_EQ("s(teddy)",Y.value()); 
 }
 
 #endif
