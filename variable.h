@@ -24,7 +24,7 @@ public:
       else
         _value = var->value(); 
     }
-    if(_assignable || _value == term.value()){
+    if(_assignable || _value == term.symbol()){
         _value = term.value();
         _assignable = false;
         return true;
