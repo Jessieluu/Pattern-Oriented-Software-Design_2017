@@ -22,6 +22,7 @@ TEST (Variable , haveValue){
   Atom tom ("tom");
   Atom jerry ("jerry");
   Variable X("X");
+  tom.match(X);
   ASSERT_TRUE(X.match(tom));
   ASSERT_FALSE(X.match(jerry));
 }

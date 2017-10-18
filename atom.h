@@ -3,7 +3,6 @@
 #define ATOM_H
 
 #include <string>
-
 using std::string;
 
 class Term{
