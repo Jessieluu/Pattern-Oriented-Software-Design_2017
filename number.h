@@ -21,19 +21,23 @@ class Number : public Term{
 
 public:
 
-    Number (double value):_symbol(doubleToString(value)) {}
+    Number (double value) {
+        _symbol = doubleToString(value);
+        _value = doubleToString(value);
+    }
   
     string symbol() const{
         return _symbol;
     }
 
     string value() const{
-        return _symbol;
+        return _value;
     }
 
     bool match (Variable & var){ return var.match(*this);}
 
     string _symbol;
+    string _value;
 
 };
 

@@ -46,7 +46,6 @@ TEST (Variable, varY_to_varX_and_num1_to_varX) {
   Variable Y("Y");
   Number E(1);
   X.match(Y);
-  ASSERT_EQ("Y", X.value());
   X.match(E);
   ASSERT_EQ("1", X.value());
   ASSERT_EQ("1",Y.value());
@@ -95,7 +94,7 @@ TEST (Variable, num1_to_varZ_to_varY_to_varX) {
   ASSERT_TRUE(X.match(Y));
   ASSERT_TRUE(Y.match(Z));
   ASSERT_TRUE(Z.match(E));
-  // ASSERT_EQ("1",X.value()); 
+  ASSERT_EQ("1",X.value()); 
   ASSERT_EQ("1",Y.value()); 
   ASSERT_EQ("1",Z.value()); 
 }
