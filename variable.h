@@ -17,12 +17,16 @@ public:
   string value() const { return _value;}
 
   bool match(Term & term){
+    Variable * var = dynamic_cast<Variable *>(&term);
+    // if(var){
+
+    // }
     if(_assignable || _value == term.value()){
         _value = term.value();
         _assignable = false;
         return true;
     }
-    return value() == term.value();
+    return false;
 }
 
 // private:

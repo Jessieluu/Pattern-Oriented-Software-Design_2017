@@ -40,7 +40,7 @@ public:
     return ret2;
   }
 
-  bool match(Term &term){
+  bool match(Term & term){
     Struct * ps = dynamic_cast<Struct *>(&term);
     if (ps){
       if (!_name.match(ps->_name))
