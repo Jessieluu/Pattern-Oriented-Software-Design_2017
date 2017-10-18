@@ -174,6 +174,6 @@ TEST(Struct, nested_struct_and_multiVariable)
   std::vector<Term *> v2 ={&s2,&X};
   Struct s1(Atom("s1"), v2);
   ASSERT_EQ("s1(s2(Y), X)",s1.symbol());
-  // ASSERT_EQ("s1(s2(kent_beck), kent_beck)", s1.value());
+  ASSERT_EQ("s1(s2(kent_beck), kent_beck)", s1.value());
 }
 #endif

@@ -10,11 +10,13 @@ using std::string;
 
 class Variable : public Term{
 public:
-  Variable (string s): _symbol(s),_value(s) {}
+  Variable (string s): _symbol(s){
+    *_value = s;
+  }
 
   string symbol() const{ return _symbol;}
 
-  string value() const { return _value;}
+  string value() const { return *_value;}
 
   bool match(Term & term){
     bool re = _assignable;
@@ -22,22 +24,22 @@ public:
     if(_assignable){
       if(var){
         if(var->_assignable)
-          var->value() = _value;
+          var->_value = _value;
         else
-          _value = var->value(); 
+          _value = var->_value; 
       }else{ //非變數
-        _value = term.value();
+        *_value = term.value();
         _assignable = false;
       }
     }else{
-      return _value == term.value();
+      return *_value == term.value();
     }
     return re;
 }
 
 // private:
   string _symbol;
-  string _value;
+  string *_value = new string;
   bool _assignable = true;  
 
 };
