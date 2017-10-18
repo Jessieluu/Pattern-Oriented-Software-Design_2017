@@ -17,19 +17,22 @@ public:
   string value() const { return _value;}
 
   bool match(Term & term){
+    bool re = _assignable;
     Variable * var = dynamic_cast<Variable *>(&term);
-    if(var){
-      if(var->_assignable)
-        var->value() = _value;
-      else
-        _value = var->value(); 
-    }
-    if(_assignable || _value == term.symbol()){
+    if(_assignable){
+      if(var){
+        if(var->_assignable)
+          var->value() = _value;
+        else
+          _value = var->value(); 
+      }else{ //非變數
         _value = term.value();
         _assignable = false;
-        return true;
+      }
+    }else{
+      return _value == term.value();
     }
-    return false;
+    return re;
 }
 
 // private:
