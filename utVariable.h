@@ -102,9 +102,9 @@ TEST (Variable, num1_to_varZ_to_varX_and_varY_to_varX) {
   Variable Y("Y");
   Variable Z("Z");
   Number E(1);
-  Z.match(E);
-  X.match(Z);
   X.match(Y);
+  X.match(Z);
+  Z.match(E);
   EXPECT_TRUE(X.match(E));
   EXPECT_TRUE(Y.match(E));
   EXPECT_TRUE(Z.match(E));
