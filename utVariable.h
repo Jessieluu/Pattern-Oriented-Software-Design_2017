@@ -33,7 +33,7 @@ TEST(Variable , numE_to_varX){
   Variable X("X");
   Number E(2.7182);
   X.match(E);
-  EXPECT_TRUE(X.match(E));
+  ASSERT_EQ("2.7182",X.value());  
 }
 
 // ?- X=Y, X=1.
@@ -44,8 +44,7 @@ TEST (Variable, varY_to_varX_and_num1_to_varX) {
   Number E(1);
   X.match(Y);
   X.match(E);
-  // ASSERT_EQ("1",Y.value());
-  EXPECT_TRUE(Y.match(E));
+  ASSERT_EQ("1",Y.value());
 }
   
 // ?- X=Y, Y=1.
@@ -56,7 +55,7 @@ TEST (Variable, varY_to_varX_and_num1_to_varY) {
   Number E(1);
   Y.match(E);
   X.match(Y);
-  EXPECT_TRUE(X.match(E));
+  ASSERT_EQ("1",X.value());  
 }
 
 // ?- X=X, X=1.
@@ -66,7 +65,7 @@ TEST (Variable, varX_match_varX_and_num1_to_varX) {
   Number E(1);
   X.match(E);  
   X.match(X);
-  EXPECT_TRUE(X.match(E));
+  ASSERT_EQ("1",X.value()); 
 }
 
 // ?- Y=1, X=Y.
@@ -77,7 +76,7 @@ TEST (Variable, num1_to_varY_and_varX_match_varY) {
   Number E(1);
   Y.match(E);
   X.match(Y);
-  EXPECT_TRUE(X.match(E));
+  ASSERT_EQ("1",X.value()); 
 }
 
 // ?- X=Y, Y=Z, Z=1
@@ -87,12 +86,12 @@ TEST (Variable, num1_to_varZ_to_varY_to_varX) {
   Variable Y("Y");
   Variable Z("Z");
   Number E(1);
-  Z.match(E);
-  Y.match(Z);
   X.match(Y);
-  EXPECT_TRUE(X.match(E));
-  EXPECT_TRUE(Y.match(E));
-  EXPECT_TRUE(Z.match(E));
+  Y.match(Z);
+  Z.match(E);
+  ASSERT_EQ("1",X.value()); 
+  ASSERT_EQ("1",Y.value()); 
+  ASSERT_EQ("1",Z.value()); 
 }
 
 // ?- X=Y, X=Z, Z=1
@@ -105,9 +104,9 @@ TEST (Variable, num1_to_varZ_to_varX_and_varY_to_varX) {
   X.match(Y);
   X.match(Z);
   Z.match(E);
-  EXPECT_TRUE(X.match(E));
-  EXPECT_TRUE(Y.match(E));
-  EXPECT_TRUE(Z.match(E));
+  ASSERT_EQ("1",X.value()); 
+  ASSERT_EQ("1",X.value()); 
+  ASSERT_EQ("1",X.value()); 
 }
 
 // Give there is a Struct s contains Variable X
@@ -131,7 +130,7 @@ TEST (Variable, Struct1) {
 // And X matches Atom "teddy"
 // Then #symbol() of Y should return "Y"
 // And #value() of Y should return "s(teddy)"
-TEST (Variable, Struct2) {
+TEST (Variable, Struct2) { 
   Variable X("X");
   Variable Y("Y");
   Atom teddy("teddy");
