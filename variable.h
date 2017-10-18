@@ -11,12 +11,12 @@ class Variable : public Term{
 public:
   Variable (string s) {
     _symbol = s;
-    _value = s;
+    *_value = s;
   }
 
   string symbol() const{ return _symbol;}
 
-  string value() const { return _value;}
+  string value() const { return *_value;}
 
   bool match(Term & term){
     bool re = _assignable;
@@ -28,19 +28,18 @@ public:
         else
           _value = var->_value; 
       }else{ //非變數
-        * ptr = term.value();
+        *_value = term.value();
         _assignable = false;
       }
     }else{
-      return * ptr == term.value();
+      return *_value == term.value();
     }
     return re;
 }
 
 // private:
   string _symbol;
-  string _value;
-  string * ptr;
+  string * _value = new string;
   bool _assignable = true;  
 
 };
