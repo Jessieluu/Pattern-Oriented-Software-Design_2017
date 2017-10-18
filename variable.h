@@ -18,9 +18,12 @@ public:
 
   bool match(Term & term){
     Variable * var = dynamic_cast<Variable *>(&term);
-    // if(var){
-
-    // }
+    if(var){
+      if(var->_assignable)
+        var->value() = _value;
+      else
+        _value = var->value(); 
+    }
     if(_assignable || _value == term.value()){
         _value = term.value();
         _assignable = false;
