@@ -18,7 +18,6 @@ public:
     return symbol() == term.symbol();
   }
 
-
 };
 
 class Atom : public Term{

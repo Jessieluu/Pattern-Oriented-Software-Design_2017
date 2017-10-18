@@ -153,7 +153,7 @@ TEST(Struct, nested_struct3)
   std::vector<Term *> v2 ={&s2};
   Struct s1(Atom("s1"), v2);
   ASSERT_EQ("s1(s2(X))",s1.symbol());
-  ASSERT_EQ("s1(s2("+str+"))",s1.value());
+  ASSERT_EQ("s1(s2(3.14))",s1.value());
 }
 
 // Given there are Struct s1 contains Struct s2 and Variable X
