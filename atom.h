@@ -3,22 +3,9 @@
 #define ATOM_H
 
 #include <string>
+#include "term.h"
+#include "variable.h"
 using std::string;
-
-class Term{
-
-public:
-  virtual string symbol() const= 0;
-
-  virtual string value() const{
-    return symbol();
-  }
-
-  virtual bool match(Term & term) {
-    return symbol() == term.symbol();
-  }
-
-};
 
 class Atom : public Term{
 public:
@@ -27,7 +14,13 @@ public:
   string symbol() const{
     return _symbol;
   }
-  
+
+  bool match(Term & term) {
+    return symbol() == term.symbol();
+  }
+
+  bool match (Variable & var){ return var.match(*this);}
+
   string _symbol;
 };
 

@@ -3,13 +3,13 @@
 #define STRUCT_H
 
 #include "atom.h"
+#include "term.h"
 #include <vector>
 #include <string>
 
 using std::string;
 
-class Struct:public Term
-{
+class Struct:public Term{
 public:
   Struct(Atom const & name, std::vector<Term *> args):_name(name), _args(args) {
   }

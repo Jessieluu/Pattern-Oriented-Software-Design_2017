@@ -8,7 +8,7 @@ else
 	g++ -o hw3 mainAtom.o -lgtest -lpthread
 endif
 
-mainAtom.o: mainAtom.cpp utAtom.h atom.h utVariable.h variable.h utStruct.h struct.h number.h
+mainAtom.o: mainAtom.cpp term.h utAtom.h atom.h utVariable.h variable.h utStruct.h struct.h number.h 
 	g++ -std=gnu++0x -c mainAtom.cpp
 
 # utVariable: mainVariable.o

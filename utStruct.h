@@ -1,10 +1,13 @@
 #ifndef UTSTRUCT_H
 #define UTSTRUCT_H
 #include <vector>
+
+#include <vector>
 #include "atom.h"
 #include "struct.h"
 #include "number.h"
 #include "variable.h"
+using std::vector;
 
 TEST(Struct, hobby)
 {

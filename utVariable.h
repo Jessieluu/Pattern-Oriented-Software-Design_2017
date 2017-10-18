@@ -1,9 +1,12 @@
 #ifndef UTVARIABLE_H
 #define UTVARIABLE_H
+
+#include <vector>
 #include "variable.h"
 #include "struct.h"
 #include "atom.h"
 #include "number.h"
+using std::vector;
 
 TEST(Variable, constructor){
   Variable X("X");

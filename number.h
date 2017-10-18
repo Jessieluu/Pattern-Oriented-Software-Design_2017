@@ -3,7 +3,7 @@
 #define NUMBER_H
 
 #include <string>
-#include "atom.h"
+#include "term.h"
 #include "variable.h"
 #include <sstream>
 
