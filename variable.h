@@ -16,13 +16,13 @@ public:
 
   string value() const { return _value;}
 
-  bool match(Term& var){
-    if(_assignable || _value == var.value()){
-        _value = var.value();
+  bool match(Term & term){
+    if(_assignable || _value == term.value()){
+        _value = term.value();
         _assignable = false;
         return true;
     }
-    return value() == var.value();
+    return value() == term.value();
 }
 
 // private:

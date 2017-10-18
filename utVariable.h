@@ -43,6 +43,7 @@ TEST (Variable, varY_to_varX_and_num1_to_varX) {
   Number E(1);
   X.match(Y);
   X.match(E);
+  // ASSERT_EQ("1",Y.value());
   EXPECT_TRUE(Y.match(E));
 }
   

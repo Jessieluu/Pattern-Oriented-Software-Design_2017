@@ -1,11 +1,4 @@
 all: hw3
-
-# hw3: utAtom
-# ifeq (${OS}, Windows_NT)
-# 	g++ -o hw3 mainAtom.o mainVariable.o mainStruct.o -lgtest
-# else
-# 	g++ -o hw3 mainAtom.o mainVariable.o mainStruct.o -lgtest -lpthread
-# endif
  
 hw3: mainAtom.o
 
