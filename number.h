@@ -31,6 +31,7 @@ public:
 
     string _symbol;
 
+
 };
 
 

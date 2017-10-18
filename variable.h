@@ -4,17 +4,19 @@
 
 #include <string>
 #include "term.h"
+
 using std::string;
 
 class Variable : public Term{
 public:
-  Variable (string s): _symbol(s){
-    *_value = s;
+  Variable (string s) {
+    _symbol = s;
+    _value = s;
   }
 
   string symbol() const{ return _symbol;}
 
-  string value() const { return *_value;}
+  string value() const { return _value;}
 
   bool match(Term & term){
     bool re = _assignable;
@@ -26,18 +28,19 @@ public:
         else
           _value = var->_value; 
       }else{ //非變數
-        *_value = term.value();
+        * ptr = term.value();
         _assignable = false;
       }
     }else{
-      return *_value == term.value();
+      return * ptr == term.value();
     }
     return re;
 }
 
 // private:
   string _symbol;
-  string *_value = new string;
+  string _value;
+  string * ptr;
   bool _assignable = true;  
 
 };

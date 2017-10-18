@@ -14,6 +14,10 @@ public:
   string symbol() const{
     return _symbol;
   }
+  
+  string value() const { 
+    return _symbol; 
+  }
 
   bool match(Term & term) {
     return symbol() == term.symbol();
