@@ -27,7 +27,7 @@ public:
         return _symbol;
     }
 
-    // bool match (Variable & var){ return var.match(*this);}
+    bool match (Variable & var){ return var.match(*this);}
 
     string _symbol;
 
