@@ -24,9 +24,9 @@ public:
     if(_assignable){
       if(var){
         if(var->_assignable)
-          var->_value = _value;
-        else
           _value = var->_value; 
+        else
+          var->_value = _value;
       }else{ //非變數
         *_value = term.value();
         _assignable = false;
