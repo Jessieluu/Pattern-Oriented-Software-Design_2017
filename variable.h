@@ -29,7 +29,8 @@ public:
     bool re = _assignable;
     Variable * var = dynamic_cast<Variable *>(&term);
     Struct * ps = dynamic_cast < Struct * > ( &term );
-    if(_symbol == term.symbol()){
+
+    if(_symbol == term.symbol()){ //if match is the same
       return true;
     }      
 
@@ -56,11 +57,11 @@ public:
         }
         return true;
       }
-      if (ps){
+      if (ps){ // if is struct
         _isStruct = ps;
         return true; 
       }
-      //if itn't variable
+      //if itn't variable & struct
       _value = term.symbol();
       if(_trace.size()){
         for (int i=0;i<_trace.size();i++){
@@ -70,7 +71,7 @@ public:
       _assignable = false;	
       return true;
     }
-    return false;
+    return re;
   }
 
 // private:
