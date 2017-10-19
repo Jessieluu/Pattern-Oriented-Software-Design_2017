@@ -18,10 +18,12 @@ public:
 
   string symbol() const{ return _symbol;}
 
-  string value() const { 	if ( _save != 0)
-		return _save ->value();
-	else
-		return _value;}
+  string value() const { 	
+    if (_isStruct!=0)
+		  return _isStruct ->value();
+    else
+      return _value;
+  }
 
   bool match(Term & term){
     bool re = _assignable;
@@ -54,8 +56,8 @@ public:
         }
         return true;
       }
-      if ( ps ){
-        _save = ps;
+      if (ps){
+        _isStruct = ps;
         return true; 
       }
       //if itn't variable
@@ -76,7 +78,7 @@ public:
   string _value;
   bool _assignable = true;  
   vector <Variable *> _trace;
-  Struct * _save = 0;
+  Struct * _isStruct = 0;
 };
 
 #endif
