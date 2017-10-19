@@ -20,6 +20,7 @@ public:
   bool match(Term & term) {
     return symbol() == term.symbol();
   }
+
   string _symbol;
 };
 
