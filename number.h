@@ -4,7 +4,7 @@
 
 #include <string>
 #include "term.h"
-// #include "variable.h"
+#include "variable.h"
 #include <sstream>
 
 using namespace std;
@@ -34,7 +34,7 @@ public:
         return _value;
     }
 
-    // bool match (Variable & var){ return var.match(*this);}
+    bool match (Variable & var){ return var.match(*this);}
 
     string _symbol;
     string _value;

@@ -8,6 +8,7 @@
 using std::string;
 using std::vector;
 
+
 class Variable : public Term{
 public:
   Variable (string s) {
