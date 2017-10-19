@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <string>
-#include "atom.h"
 #include "term.h"
+#include "atom.h"
 
 using std::string;
 

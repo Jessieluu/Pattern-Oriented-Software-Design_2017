@@ -3,7 +3,7 @@
 
 #include <string>
 #include "term.h"
-#include "variable.h"
+// #include "variable.h"
 using std::string;
 
 class Atom : public Term{
@@ -22,7 +22,7 @@ public:
     return symbol() == term.symbol();
   }
 
-  bool match (Variable & var){ return var.match(*this);}
+  // bool match (Variable & var){ return var.match(*this);}
 
   string _symbol;
 };
