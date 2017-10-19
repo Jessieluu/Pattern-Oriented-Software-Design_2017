@@ -28,7 +28,7 @@ public:
   bool match(Term & term){
     bool re = _assignable;
     Variable * var = dynamic_cast<Variable *>(&term);
-    Struct * ps = dynamic_cast < Struct * > ( &term );
+    Struct * ps = dynamic_cast <Struct *>(&term);
 
     if(_symbol == term.symbol()){ //if match is the same
       return true;
@@ -46,11 +46,13 @@ public:
               (var->_trace).push_back(_trace[i]);
             }              
           }
+
           if ((var->_trace).size()){ // if var2 has been traced, let two variable have the same element
             for (int i=0;i<(var->_trace).size();i++){
               _trace.push_back((var->_trace)[i]);
             }              
           }	
+
         }else{//if var2 couldn't be match
           _value = var->value();
           _assignable = false;
