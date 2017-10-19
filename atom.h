@@ -1,4 +1,3 @@
-#pragma once
 #ifndef ATOM_H
 #define ATOM_H
 
@@ -14,7 +13,7 @@ public:
   string symbol() const{
     return _symbol;
   }
-  
+
   string value() const { 
     return _symbol; 
   }

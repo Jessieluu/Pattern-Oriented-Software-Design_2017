@@ -1,11 +1,10 @@
-#pragma once
 #ifndef STRUCT_H
 #define STRUCT_H
 
-#include "atom.h"
-#include "term.h"
 #include <vector>
 #include <string>
+#include "atom.h"
+#include "term.h"
 
 using std::string;
 

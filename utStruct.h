@@ -2,7 +2,6 @@
 #define UTSTRUCT_H
 #include <vector>
 
-#include <vector>
 #include "atom.h"
 #include "struct.h"
 #include "number.h"
