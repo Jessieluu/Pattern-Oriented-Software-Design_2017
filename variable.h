@@ -19,12 +19,13 @@ public:
       return Term::value();
   }
   bool match( Term & term ){
+    List * li = dynamic_cast<List *>(&term);    
     if (this == &term) //variable match variable
       return true;
-    if(!_inst){ // variable match to any else
-      // if(typeid(term) == typeid(List)){
-      //   term.compareElementsifexit(this->symbol());  
-      // }
+    if(!_inst){ ////variable match anything else
+      if(typeid(term) == typeid(List)){
+        return li->compareElementsifexit(this->symbol());  
+      }
       _inst = &term ; // pointer to any else
       return true;
     }
