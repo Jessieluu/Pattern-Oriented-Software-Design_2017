@@ -1,17 +1,19 @@
-all: hw3
+all: hw4
  
-hw3: mainAtom.o
+hw4: main.o Atom.o
 
 ifeq (${OS}, Windows_NT)
-	g++ -o hw3 mainAtom.o -lgtest
+	g++ -o hw4 main.o Atom.o -lgtest
 else
-	g++ -o hw3 mainAtom.o -lgtest -lpthread
+	g++ -o hw4 main.o Atom.o -lgtest -lpthread
 endif
 
-mainAtom.o: mainAtom.cpp utVariable.h utStruct.h 
-	g++ -std=gnu++0x -c mainAtom.cpp
+main.o: main.cpp list.h struct.h 
+	g++ -std=gnu++0x -c main.cpp
+Atom.o: Atom.cpp atom.h variable.h
+	g++ -std=gnu++0x -c Atom.cpp
 
 clean:
-	rm -f *.o hw3 utStruct utVariable
+	rm -f *.o hw4
 stat:
 	wc *.h *.cpp
