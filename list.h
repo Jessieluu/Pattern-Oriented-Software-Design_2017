@@ -32,10 +32,10 @@ public:
       return "[]";
     }else{
       string ret = "[";
-      std::vector<Term *>::const_iterator it = _elements.begin();
-      for (; it != _elements.end()-1; ++it)
+      vector<Term *>::const_iterator it = _elements.begin();
+      for ( ; it != _elements.end()-1; ++it)
         ret += (*it)->symbol()+", ";
-      ret  += (*it)->symbol()+"]";
+      ret += (*it)->symbol()+"]";
       return ret;
     }
   }
@@ -44,16 +44,16 @@ public:
       return "[]";
     }else{
       string ret = "[";
-      std::vector<Term *>::const_iterator it = _elements.begin();
-      for (; it != _elements.end()-1; ++it)
+      vector<Term *>::const_iterator it = _elements.begin();
+      for ( ; it != _elements.end()-1; ++it)
         ret += (*it)->value()+", ";
-      ret  += (*it)->value()+"]";
+      ret += (*it)->value()+"]";
       return ret;
     }
   }
   bool compareElementsifexit(string compare){
-    std::vector<Term *>::const_iterator it = _elements.begin();    
-    for (; it != _elements.end()-1; ++it){
+    vector<Term *>::const_iterator it = _elements.begin();    
+    for ( ; it != _elements.end()-1; ++it){
       if(compare == (*it)->value()){
         return false;            
       }  
@@ -65,8 +65,7 @@ public:
   }
   bool match(Term & term){
     List * li = dynamic_cast<List *>(&term);
-
-    if(_elements.size() == li->_elements.size()){
+    if(_elements.size() == li->_elements.size()){ //two list have the same size
       for (int i=0; i<_elements.size()-1; i++){
         _elements[i]->match(li->getClasstype(i));
       }        

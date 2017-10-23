@@ -26,7 +26,6 @@ TEST(List, Numbers) {
   vector<Term *> args = {&_8128, &_496};
   List l(args);
   ASSERT_EQ("[8128, 496]",l.symbol());
-
 }
 
 // Given there are two atoms: "terence_tao", "alan_mathison_turing"
@@ -38,7 +37,6 @@ TEST(List, Atoms) {
   vector<Term *> args = {&terence_tao, &alan_mathison_turing};
   List l(args);
   ASSERT_EQ("[terence_tao, alan_mathison_turing]",l.symbol());
-
 }
 
 // Given there are two variables: X, Y
@@ -167,7 +165,6 @@ TEST(List, matchVarinListToAtomShouldSucceed) {
   Y.match(l1);
   X.match(alan_mathison_turing);
   ASSERT_EQ("alan_mathison_turing",X.value());
-
 }
 
 // Example: 
@@ -215,7 +212,6 @@ TEST(List, headAndTailMatching4) {
 
   EXPECT_EQ(string("third"), l.tail()->tail()->head()->value());
   EXPECT_EQ(string("[]"), l.tail()->tail()->tail()->value());
-
 }
  
 // Given there is a empty list
@@ -241,8 +237,5 @@ TEST (List, emptyExecptionOfTail) {
   	ASSERT_EQ ("Accessing tail in an empty list", e);
   }
 }
-
-
-
 
 #endif
