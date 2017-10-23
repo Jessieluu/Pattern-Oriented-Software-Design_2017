@@ -9,8 +9,8 @@ class List : public Term {
 public:
   List() : _elements() {}
   List (vector<Term *> const & elements):_elements(elements){}
-  Term * head() const;
-  List * tail() const;
+  // Term * head() const;
+  // List * tail() const;
   string symbol() const{
     if(_elements.empty()){
       return "[]";
