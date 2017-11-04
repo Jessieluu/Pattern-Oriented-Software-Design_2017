@@ -8,8 +8,10 @@ else
 	g++ -o hw5 main.o Atom.o -lgtest -lpthread
 endif
 
-main.o: main.cpp atom.h number.h variable.h term.h list.h struct.h global.h parser.h scanner.h
+main.o: main.cpp number.h variable.h term.h list.h struct.h global.h parser.h
 	g++ -std=gnu++0x -c main.cpp
+Atom.o: Atom.cpp atom.h 
+	g++ -std=gnu++0x -c Atom.cpp
 
 clean:
 	rm -f *.o hw5
