@@ -10,7 +10,7 @@ endif
 
 main.o: main.cpp list.h struct.h number.h variable.h global.h parser.h
 	g++ -std=gnu++0x -c main.cpp
-Atom.o: Atom.cpp atom.h 
+Atom.o: Atom.cpp atom.h term.h
 	g++ -std=gnu++0x -c Atom.cpp
 
 clean:
