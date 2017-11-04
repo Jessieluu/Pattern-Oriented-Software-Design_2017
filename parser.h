@@ -1,5 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
+
 #include <string>
 using std::string;
 
@@ -29,6 +30,8 @@ public:
           _scanner.nextToken();
           if(_scanner.currentChar() != ')')
             terms = getArgs();
+          if (_currentToken == ']' )
+            throw string("unexpected token");  
           return new Struct(*atom, terms);
         }
         else
@@ -39,7 +42,7 @@ public:
       if (_scanner.currentChar() == ']'){
         _scanner.nextToken();
         return new List(terms);
-      }else{
+      }else{ //_scanner.currentChar() != ']'
         terms = getArgs();
         if (_currentToken == ')' )
           throw string("unexpected token");
@@ -61,10 +64,9 @@ public:
     return args;
   }
 
-
-
 private:
   Scanner _scanner;
   int _currentToken;
 };
+
 #endif
