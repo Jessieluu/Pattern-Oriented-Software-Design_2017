@@ -21,50 +21,43 @@ public:
       return new Variable(symtable[_scanner.tokenValue()].first);
     }else if(token == NUMBER){
       return new Number(_scanner.tokenValue());
-    }else if(token == ATOM){
+    }else if(token == ATOM || token == ATOMSC){
         Atom* atom = new Atom(symtable[_scanner.tokenValue()].first);
-        if(_scanner.currentChar() == '(' ) {
-          _scanner.nextToken() ;
-          vector<Term*> terms;
-          while(_scanner.currentChar() != ')'){
-            Term * pushTerm = createTerm();
-            if(pushTerm != NULL)
-              terms.push_back(pushTerm);
-          }
+        vector<Term*> terms={};
+        _scanner.skipLeadingWhiteSpace();
+        if(_scanner.currentChar() == '(') {
+          _scanner.nextToken();
+          if(_scanner.currentChar() != ')')
+            terms = getArgs();
           return new Struct(*atom, terms);
         }
         else
           return atom;
-    }else if(_scanner.currentChar() == '['){
-      _scanner.nextToken() ;
-      vector<Term*> terms;
-      while(_scanner.bufferSize() > _scanner.position() && _scanner.currentChar() != ']'){
-        Term * pushTerm = createTerm();
-        if(pushTerm != NULL)
-          terms.push_back(pushTerm);
-      }
-      if (_scanner.bufferSize() == _scanner.position())
-        throw string("unexpected token");
-      if (_scanner.currentChar() == ']')
+    }else if( token == '['){
+      vector<Term*> terms={};
+      _scanner.skipLeadingWhiteSpace(); 
+      if (_scanner.currentChar() == ']'){
         _scanner.nextToken();
-      return new List(terms);
+        return new List(terms);
+      }else{
+        terms = getArgs();
+        if (_currentToken == ')' )
+          throw string("unexpected token");
+        return new List(terms);  
+      }      
     }
     return nullptr;
   }
 
   vector<Term*> getArgs()
   {
-    vector<Term*> args;
-    while(_scanner.bufferSize() > _scanner.position()){
-      Term* term = createTerm();
-      if (term != NULL)
-        args.push_back(term);
+    Term* term = createTerm();
+    vector<Term*> args ={};
+    if(term)
+      args.push_back(term);
+    while((_currentToken = _scanner.nextToken()) == ',') { 
+      args.push_back(createTerm());
     }
-    // if(term)
-    //   args.push_back(term);
-    // while((_currentToken = _scanner.nextToken()) == ',') { 
-    //   args.push_back(createTerm());
-    // }
     return args;
   }
 

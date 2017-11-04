@@ -84,7 +84,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner("point(1, X, z(1,2,3))");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("point(1, X, z(1,2,3))", terms[0]->symbol()); // Actual: "point(1, X, z(1, 2, 3))"    
+    ASSERT_EQ("point(1, X, z(1, 2, 3))", terms[0]->symbol());  
   }
   
   
@@ -119,7 +119,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner("   [   ]");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("[]", terms[0]->symbol());
+    ASSERT_EQ("[]", terms[0]->symbol());
   }
   
   
@@ -166,7 +166,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner("   [  [1], [] ]");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("[[1], []]", terms[0]->symbol());  
+    ASSERT_EQ("[[1], []]", terms[0]->symbol());  
   }
   
   
@@ -178,8 +178,8 @@ TEST_F(ParserTest, listOfTermsTwo) {
   	Scanner scanner("   [  [1], [], s(s(1)) ] ");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ(1, terms.size());
-    // ASSERT_EQ("[[1], [], s(s(1))]", terms[0]->symbol());
+    ASSERT_EQ(1, terms.size());
+    ASSERT_EQ("[[1], [], s(s(1))]", terms[0]->symbol());
   }
   
   // Given there is string: "   [1, 2]" in scanner.
@@ -190,7 +190,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
   	Scanner scanner("   [1, 2]");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("[1, 2]", terms[0]->symbol());
+    ASSERT_EQ("[1, 2]", terms[0]->symbol());
   }
   
   // Given there is string: "[1,2)" in scanner.
@@ -216,10 +216,10 @@ TEST_F(ParserTest, listOfTermsTwo) {
   	Scanner scanner(".(1,[])");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ(".(1, [])", terms[0]->symbol());
-    // ASSERT_EQ(2, dynamic_cast<Struct*>(terms[0])->arity());
-    // ASSERT_EQ("1", dynamic_cast<Number*>(((Struct*)terms[0])->args(0))->symbol());
-    // ASSERT_EQ("[]", dynamic_cast<List*>(((Struct*)terms[0])->args(1))->symbol());
+    ASSERT_EQ(".(1, [])", terms[0]->symbol());
+    ASSERT_EQ(2, dynamic_cast<Struct*>(terms[0])->arity());
+    ASSERT_EQ("1", dynamic_cast<Number*>(((Struct*)terms[0])->args(0))->symbol());
+    ASSERT_EQ("[]", dynamic_cast<List*>(((Struct*)terms[0])->args(1))->symbol());
   }
   
   
@@ -233,10 +233,10 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner(".(2,.(1,[]))");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ(".(2, .(1, []))", terms[0]->symbol());
-    // ASSERT_EQ(2, dynamic_cast<Struct*>(terms[0])->arity());
-    // ASSERT_EQ("2",  dynamic_cast<Number*>(((Struct*)terms[0])->args(0))->symbol());
-    // ASSERT_EQ(".(1, [])", dynamic_cast<Struct*>(((Struct*)terms[0])->args(1))->symbol());
+    ASSERT_EQ(".(2, .(1, []))", terms[0]->symbol());
+    ASSERT_EQ(2, dynamic_cast<Struct*>(terms[0])->arity());
+    ASSERT_EQ("2",  dynamic_cast<Number*>(((Struct*)terms[0])->args(0))->symbol());
+    ASSERT_EQ(".(1, [])", dynamic_cast<Struct*>(((Struct*)terms[0])->args(1))->symbol());
   }
   
   
@@ -249,8 +249,8 @@ TEST_F(ParserTest, listOfTermsTwo) {
   	Scanner scanner("s(s(s(s(1)))), b(1,2,3)");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("s(s(s(s(1))))", terms[0]->symbol());
-    // ASSERT_EQ("b(1, 2, 3)", terms[1]->symbol());
+    ASSERT_EQ("s(s(s(s(1))))", terms[0]->symbol());
+    ASSERT_EQ("b(1, 2, 3)", terms[1]->symbol());
   }
   
   
@@ -262,7 +262,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner("point()");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("point()", terms[0]->symbol());  
+    ASSERT_EQ("point()", terms[0]->symbol());  
   }
   
   
@@ -299,7 +299,7 @@ TEST_F(ParserTest, listOfTermsTwo) {
     Scanner scanner("...(11,12)");
     Parser parser(scanner);
     vector<Term*> terms = parser.getArgs();
-    // ASSERT_EQ("...(11, 12)", terms[0]->symbol());
+    ASSERT_EQ("...(11, 12)", terms[0]->symbol());
   }
   
   

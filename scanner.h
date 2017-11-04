@@ -87,10 +87,6 @@ public:
     return buffer[pos++];
   }
 
-  int bufferSize(){
-    return buffer.size();
-  }
-
 private:
   string buffer;
   int pos;
