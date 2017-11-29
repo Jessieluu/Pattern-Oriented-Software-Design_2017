@@ -6,7 +6,7 @@
 #include "parser.h"
 #include "scanner.h"
 
-class ParserTest : public ::testing::Test {
+class ParserTest : public :: testing :: Test {
 protected:
   void SetUp() {
     symtable.clear();
@@ -419,21 +419,5 @@ TEST_F(ParserTest, MatchingSuccess) {
   EXPECT_EQ("2", terms[2]->value());
   EXPECT_EQ("s(s(2))", terms[4]->value());
 }
-
-// #include "variable.h"
-// #include "struct.h"
-// #include "number.h"
-// TEST(Variable, test){
-//   Number two(2);
-//   Variable X("X");
-//   X.match(two);  
-//   Variable Y("Y");
-//   std::vector<Term *> v ={&X};
-//   Struct s(Atom("s"), v);
-//   std::vector<Term *> v2 ={&s};
-//   Struct s2(Atom("s"), v2);
-//   Y.match(s2);
-//   ASSERT_EQ("s(s(2))",Y.value());
-// }
 
 #endif

@@ -44,10 +44,7 @@ public:
       return list();
     }
     return nullptr;
-
   }
-
-
 
   Term * structure() {
     Atom structName = Atom(symtable[_scanner.tokenValue()].first);
@@ -92,10 +89,12 @@ public:
         Node * right = new Node(TERM, _terms.back(), nullptr, nullptr); //catch right of '='
         _expressionTree = new Node(EQUALITY, nullptr, left, right); //make tree
       }else { //if currentToken == ',' or ';'
-        auto op = COMMA;
+        Operators op;
         if(_currentToken == ';'){
-          inScopeVariables={};
           op = SEMICOLON;
+          inScopeVariables={};
+        }else{ 
+          op = COMMA;
         }
         Node * left = _expressionTree;
         matchings();
