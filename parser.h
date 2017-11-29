@@ -83,28 +83,31 @@ public:
 
   void matchings(){
     Term * term = createTerm();
-        _terms.push_back(term);
+    _terms.push_back(term);
 
-        while( (_currentToken = _scanner.nextToken())== '=' || _currentToken == ',' || _currentToken == ';' ){
-          if(_currentToken == '='){ //if currentToken == '='
-            Node * left = new Node(TERM, _terms.back(), nullptr, nullptr); //catch left of '='
-            _terms.push_back(createTerm()); //search next
-            Node * right = new Node(TERM, _terms.back(), nullptr, nullptr); //catch right of '='
-            _expressionTree = new Node(EQUALITY, nullptr, left, right); //make tree
-          }else { //if currentToken == ',' or ';'
-            if(_currentToken == ';')inScopeVariables={};
-            Node * left = _expressionTree;
-            matchings();
-            Node * right = _expressionTree;
-            _expressionTree = new Node(COMMA, nullptr, left, right);          
-          }
-        } 
-      
+    while( (_currentToken = _scanner.nextToken())== '=' || _currentToken == ',' || _currentToken == ';' ){
+      if(_currentToken == '='){ //if currentToken == '='
+        Node * left = new Node(TERM, _terms.back(), nullptr, nullptr); //catch left of '='
+        _terms.push_back(createTerm()); //search next
+        Node * right = new Node(TERM, _terms.back(), nullptr, nullptr); //catch right of '='
+        _expressionTree = new Node(EQUALITY, nullptr, left, right); //make tree
+      }else { //if currentToken == ',' or ';'
+        auto op = COMMA;
+        if(_currentToken == ';'){
+          inScopeVariables={};
+          op = SEMICOLON;
+        }
+        Node * left = _expressionTree;
+        matchings();
+        Node * right = _expressionTree;
+        _expressionTree = new Node(op, nullptr, left, right);          
+      }
+    }
   }
 
   Node * expressionTree() {
     return _expressionTree;
-   }
+  }
 
 private:
   FRIEND_TEST(ParserTest, createArgs);
@@ -123,32 +126,9 @@ private:
     }
   }
 
-  // Term * compare(Term * term){
-      
-  //   for(int index=0; index < _terms.size(); index++){
-  //     if(_terms[index]->symbol() == term->symbol())
-  //       return _terms[index];        
-  //     Struct * s = dynamic_cast<Struct *> ( _terms[index] );  
-  //     if(s)
-  //       return nullptr;   
-  //   }
-  //   return nullptr;
-  // }
-  // Term *  compareNestedStruct(Struct * s, Term * term){
-  //   for(int _index=0; _index < s->arity(); _index++){
-  //     if(s->args(_index)->symbol() == term->symbol())
-  //       return s->args(_index);
-  //     Struct * ns = dynamic_cast<Struct *> ( ns->args(_index) );
-  //     if(ns)
-  //       return compareNestedStruct(ns, term);  
-  //   }
-  //   return nullptr;
-  // }
-
   Node * _expressionTree;
   vector<Term *> _terms;
   Scanner _scanner;
   int _currentToken;
-  int _COMMA = 0;
 };
 #endif
