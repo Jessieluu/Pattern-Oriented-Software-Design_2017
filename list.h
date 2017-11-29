@@ -73,6 +73,11 @@ public:
     }
     return false;
   }
+  Term * args(int index) {
+    return _elements[index];
+  }
+  int arity() const {return _elements.size();}
+  
 private:
   vector<Term *> _elements;
 
