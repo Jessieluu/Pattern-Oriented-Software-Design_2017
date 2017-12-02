@@ -43,6 +43,7 @@ public:
   int arity() { 
     return _args.size(); 
   }
+  Iterator * createIterator();
   
 private:
   Atom _name;
