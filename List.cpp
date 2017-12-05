@@ -95,3 +95,11 @@ List * List::tail() const {
 Iterator * List::createIterator(){
     return new ListIterator(this);
 }
+
+Iterator * List::createDFSIterator(){
+    return new DFSIterator<Term *>(this);
+}
+
+Iterator * List::createBFSIterator(){
+    return new BFSIterator<Term *>(this);
+}

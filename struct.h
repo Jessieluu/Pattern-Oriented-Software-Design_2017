@@ -44,6 +44,8 @@ public:
     return _args.size(); 
   }
   Iterator * createIterator();
+  Iterator * createDFSIterator();
+  Iterator * createBFSIterator();
   
 private:
   Atom _name;
