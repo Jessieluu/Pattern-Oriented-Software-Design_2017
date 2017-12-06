@@ -43,9 +43,9 @@ public:
   int arity() { 
     return _args.size(); 
   }
-  Iterator * createIterator();
-  Iterator * createDFSIterator();
-  Iterator * createBFSIterator();
+  Iterator<Term*> * createIterator();
+  Iterator<Term*> * createDFSIterator();
+  Iterator<Term*> * createBFSIterator();
 
   std::vector<Term *>::iterator begin(){return _args.begin();}
   std::vector<Term *>::iterator end(){return _args.end();}

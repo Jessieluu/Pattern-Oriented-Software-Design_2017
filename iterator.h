@@ -10,7 +10,7 @@
 
 using namespace std;
 
-// template <class Type>
+template <class Type>
 class Iterator 
 {
 public:
@@ -20,7 +20,7 @@ public:
   virtual bool isDone() const = 0;
 };
 
-class NullIterator : public Iterator
+class NullIterator : public Iterator<Term*>
 {
 public:
   NullIterator(Term * n){}
@@ -214,7 +214,7 @@ public:
 
 
 template<typename T>
-class DFSIterator : public Iterator{
+class DFSIterator : public Iterator<Term*>{
 
 public:
   DFSIterator(T term){DFS(term);}
@@ -239,7 +239,7 @@ private:
 
 
 template<typename T>
-class BFSIterator : public Iterator{
+class BFSIterator : public Iterator<Term*>{
 
 public:
   BFSIterator(T term){BFS(term);}
@@ -273,7 +273,7 @@ private:
 
 
 template<typename It>
-class RangeIterator: public Iterator{
+class RangeIterator: public Iterator<Term*>{
 public:
   RangeIterator(It begin,It end):begin(begin),end(end){}
   void first(){current=begin;}

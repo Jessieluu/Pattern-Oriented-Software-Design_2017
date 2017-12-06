@@ -5,6 +5,7 @@
 #include <sstream>
 using std::string;
 
+template<typename T>
 class Iterator;
 class Term{
 public:
@@ -13,7 +14,7 @@ public:
   virtual bool match(Term & a);
   virtual int arity() { return 0; }
   virtual Term * args(int index) { return nullptr; }
-  virtual Iterator * createIterator();
+  virtual Iterator<Term*> * createIterator();
 
 protected:
   Term ():_symbol(""){}

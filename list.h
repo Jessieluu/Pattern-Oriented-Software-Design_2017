@@ -24,9 +24,9 @@ public:
     return _elements[index];
   }
   int arity(){return _elements.size();}
-  Iterator * createIterator();
-  Iterator * createDFSIterator();
-  Iterator * createBFSIterator();
+  Iterator<Term*> * createIterator();
+  Iterator<Term*> * createDFSIterator();
+  Iterator<Term*> * createBFSIterator();
 
   vector<Term *>::iterator begin(){return _elements.begin();}
   vector<Term *>::iterator end(){return _elements.end();}

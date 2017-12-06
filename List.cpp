@@ -92,14 +92,14 @@ List * List::tail() const {
     return ls;
 }
 
-Iterator * List::createIterator(){
+Iterator<Term*> * List::createIterator(){
     return CreateRangeIterator(begin(),end());
 }
 
-Iterator * List::createDFSIterator(){
+Iterator<Term*> * List::createDFSIterator(){
     return new DFSIterator<Term *>(this);
 }
 
-Iterator * List::createBFSIterator(){
+Iterator<Term*> * List::createBFSIterator(){
     return new BFSIterator<Term *>(this);
 }
