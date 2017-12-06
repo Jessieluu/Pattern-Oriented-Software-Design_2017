@@ -92,7 +92,9 @@ class DFSIterator : public Iterator{
 public:
   DFSIterator(Type term):_term(term){}
 
-  void first(){ //initial
+  void first(){initial();}
+  
+  void initial(){ //initial
     while(!_dfsStack.empty())
       _dfsStack.pop();
     
