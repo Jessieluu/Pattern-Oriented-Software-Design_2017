@@ -93,7 +93,7 @@ List * List::tail() const {
 }
 
 Iterator * List::createIterator(){
-    return new ListIterator(this);
+    return CreateRangeIterator(begin(),end());
 }
 
 Iterator * List::createDFSIterator(){

@@ -28,6 +28,8 @@ public:
   Iterator * createDFSIterator();
   Iterator * createBFSIterator();
 
+  vector<Term *>::iterator begin(){return _elements.begin();}
+  vector<Term *>::iterator end(){return _elements.end();}
 private:
   vector<Term *> _elements;
 };

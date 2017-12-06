@@ -2,7 +2,7 @@
 #include "iterator.h"
 
 Iterator * Struct::createIterator(){
-  return new StructIterator(this);
+  return CreateRangeIterator(begin(),end());
 }
 
 Iterator * Struct::createDFSIterator(){

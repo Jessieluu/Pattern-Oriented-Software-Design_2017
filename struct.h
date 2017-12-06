@@ -46,7 +46,10 @@ public:
   Iterator * createIterator();
   Iterator * createDFSIterator();
   Iterator * createBFSIterator();
-  
+
+  std::vector<Term *>::iterator begin(){return _args.begin();}
+  std::vector<Term *>::iterator end(){return _args.end();}
+
 private:
   Atom _name;
   std::vector<Term *> _args;
