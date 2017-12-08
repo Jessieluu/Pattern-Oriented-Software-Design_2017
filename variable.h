@@ -1,8 +1,11 @@
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
-#include <string>
 #include "term.h"
+#include "list.h"
+
+#include <typeinfo>
+#include <string>
 using std::string;
 
 class Variable : public Term {
@@ -15,9 +18,13 @@ public:
       return Term::value();
   }
   bool match( Term & term ){
+    List * li = dynamic_cast<List *>(&term);        
     if (this == &term)
       return true;
     if(!_inst){
+      if(typeid(term) == typeid(List)){
+        return li->compareElementsifexit(this->symbol());  
+      }
       _inst = &term ;
       return true;
     }

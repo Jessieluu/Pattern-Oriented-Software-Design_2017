@@ -14,6 +14,8 @@ public:
     _args = args;
   }
 
+  bool match(Term & term);
+
   Term * args(int index) {
     return _args[index];
   }

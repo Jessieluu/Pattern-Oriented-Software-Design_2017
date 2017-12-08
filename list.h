@@ -20,6 +20,7 @@ public:
   List (vector<Term *> const & elements):_elements(elements){}
   Term * head() const;
   List * tail() const;
+  bool compareElementsifexit(string compare);
   Term * args(int index) {
     return _elements[index];
   }
