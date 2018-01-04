@@ -2,37 +2,65 @@
 #define LIST_H
 
 #include "atom.h"
+#include "struct.h"
 #include <vector>
-#include <string>
 #include <typeinfo>
 #include <iostream>
+#include "variable.h"
 using std::vector;
+//class Variable ;
 
-class Variable ;
-
-class List : public Term {
+class List : public Struct {
 public:
   string symbol() const ;
   string value() const ;
-  bool match(Term & term) ;
+
 public:
-  List (): _elements(0) {}
-  List (vector<Term *> const & elements):_elements(elements){}
+
+  List (vector<Term *> const & elements): Struct(Atom("."), {elements[0], createTail(elements)}){
+  }
+
+  List(Term * head, Term* tail):Struct(Atom("."), { head, tail }) {
+
+  }
+
   Term * head() const;
-  List * tail() const;
-  bool compareElementsifexit(string compare);
+  Term * tail() const;
   Term * args(int index) {
     return _elements[index];
   }
-  int arity(){return _elements.size();}
-  Iterator<Term*> * createIterator();
-  Iterator<Term*> * createDFSIterator();
-  Iterator<Term*> * createBFSIterator();
 
-  vector<Term *>::iterator begin(){return _elements.begin();}
-  vector<Term *>::iterator end(){return _elements.end();}
+  int arity() const {
+    return _elements.size();
+  }
+
+  bool match ( Term & term ) {
+    List * ls = dynamic_cast < List * > ( &term );
+    Variable * var = dynamic_cast < Variable * > ( & term );
+    
+    if (ls){
+      if ( _elements.size() == ls -> arity() ) {
+        for ( int i = 0 ; i < _elements.size() - 1 ; i++ )
+          _elements[i] -> match ( * (ls -> args(i)) );
+        return true;
+      }
+    }
+    if ( var )
+      return var -> match ( *this );
+    return false;	
+  }
+  
+  Iterator * createIterator();
 private:
   vector<Term *> _elements;
+  
+  Term* createTail(std::vector<Term*> const &args){
+    Term* tail = new Atom("[]");
+    for (int i = args.size() - 1; i > 0; i--) {
+      tail = new List(args[i], tail);
+    }
+    return tail;
+  }
 };
 
 #endif
