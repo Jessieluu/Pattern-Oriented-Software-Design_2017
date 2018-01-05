@@ -86,8 +86,8 @@ TEST(Shell, varMachingListThatIncludeVar) {
   string result;
   try {
     p.buildExpression();
-    // result = p.getResult();
-    // ASSERT_EQ("X = [marry, tom], Y = marry.", result);
+    result = p.getResult();
+    ASSERT_EQ("X = [marry, tom], Y = marry.", result);
   } catch (std::string &msg) {
     FAIL() << msg;
   }

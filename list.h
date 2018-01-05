@@ -33,22 +33,6 @@ public:
   int arity() const {
     return _elements.size();
   }
-
-  bool match ( Term & term ) {
-    List * ls = dynamic_cast < List * > ( &term );
-    Variable * var = dynamic_cast < Variable * > ( & term );
-    
-    if (ls){
-      if ( _elements.size() == ls -> arity() ) {
-        for ( int i = 0 ; i < _elements.size() - 1 ; i++ )
-          _elements[i] -> match ( * (ls -> args(i)) );
-        return true;
-      }
-    }
-    if ( var )
-      return var -> match ( *this );
-    return false;	
-  }
   
   Iterator * createIterator();
 private:

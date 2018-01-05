@@ -33,7 +33,9 @@ public:
       else if(_right -> getVariable() != nullptr)
         return _left -> value() + " = " + _right -> symbol();  
         
-    }else if(logicString)
+    }else if(logicString && _left -> symbol() == _right -> symbol())
+      return "true";
+    else if(logicString)
       return "true";
     else
       return "false";
@@ -94,7 +96,6 @@ public:
       return _right->getResultTree();
     else if ( _right->getResultTree() == "true" || _right->getResultTree() == "false" )
       return _left->getResultTree();
-      
     else 
       return _left->getResultTree() + "; " + _right->getResultTree();
   }
