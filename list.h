@@ -1,81 +1,50 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include "term.h"
+#include "atom.h"
+#include "struct.h"
 #include <vector>
+#include <typeinfo>
+#include <iostream>
+#include "variable.h"
 using std::vector;
+//class Variable ;
 
-class List : public Term {
+class List : public Struct {
 public:
-  List() : _elements() {}
-  List (vector<Term *> const & elements):_elements(elements){}
-  Term * head() const{
-    if (_elements.empty()){
-		  throw string( "Accessing head in an empty list" );      
-    }
-    else{
-      return _elements[0];
-    }      
+  string symbol() const ;
+  string value() const ;
+
+public:
+
+  List (vector<Term *> const & elements): Struct(Atom("."), {elements[0], createTail(elements)}){
   }
-  List * tail() const{
-    if (_elements.empty()){
-		  throw string( "Accessing tail in an empty list" );      
-    }
-    else{
-      vector<Term *> tailElements (_elements.begin()+1, _elements.end());
-      List * tailElementsPtr = new List(tailElements);
-      return tailElementsPtr;
-    } 
+
+  List(Term * head, Term* tail):Struct(Atom("."), { head, tail }) {
+
   }
-  string symbol() const{
-    if(_elements.empty()){
-      return "[]";
-    }else{
-      string ret = "[";
-      vector<Term *>::const_iterator it = _elements.begin();
-      for ( ; it != _elements.end()-1; ++it)
-        ret += (*it)->symbol()+", ";
-      ret += (*it)->symbol()+"]";
-      return ret;
-    }
+
+  Term * head() const;
+  Term * tail() const;
+  Term * args(int index) {
+    return _elements[index];
   }
-  string value() const{
-    if(_elements.empty()){
-      return "[]";
-    }else{
-      string ret = "[";
-      vector<Term *>::const_iterator it = _elements.begin();
-      for ( ; it != _elements.end()-1; ++it)
-        ret += (*it)->value()+", ";
-      ret += (*it)->value()+"]";
-      return ret;
-    }
+
+  int arity() const {
+    return _elements.size();
   }
-  bool compareElementsifexit(string compare){
-    vector<Term *>::const_iterator it = _elements.begin();    
-    for ( ; it != _elements.end()-1; ++it){
-      if(compare == (*it)->value()){
-        return false;            
-      }  
-    }
-    return true;      
-  }
-  Term & getClasstype (int i){
-    return *_elements[i];
-  }
-  bool match(Term & term){
-    List * li = dynamic_cast<List *>(&term);
-    if(_elements.size() == li->_elements.size()){ //two list have the same size
-      for (int i=0; i<_elements.size()-1; i++){
-        _elements[i]->match(li->getClasstype(i));
-      }        
-		  return true;
-    }
-    return false;
-  }
+  
+  Iterator * createIterator();
 private:
   vector<Term *> _elements;
-
+  
+  Term* createTail(std::vector<Term*> const &args){
+    Term* tail = new Atom("[]");
+    for (int i = args.size() - 1; i > 0; i--) {
+      tail = new List(args[i], tail);
+    }
+    return tail;
+  }
 };
 
 #endif

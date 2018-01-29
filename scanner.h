@@ -3,6 +3,7 @@
 
 #include "global.h"
 
+
 #include <string>
 #include <vector>
 using std::string;
@@ -23,15 +24,15 @@ public:
         string s = extractAtom();
         processToken<ATOM>(s);
         return ATOM;
-      } else if (isSpecialCh(currentChar())) {  
+      } else if (isSpecialCh(currentChar()) && position() < buffer.length() - 1) {
         string s = extractAtomSC();
         processToken<ATOMSC>(s);
         return ATOMSC;
-      } else if (isupper(currentChar()) || currentChar() == '_') {    
+      } else if (isupper(currentChar()) || currentChar() == '_') {
         string s = extractVar();
         processToken<VAR>(s);
         return VAR;
-      } else {     
+      } else {
         _tokenValue = NONE;
         return extractChar();
       }
@@ -50,40 +51,34 @@ public:
     return buffer[pos];
   }
 
+  string getScanner() const {return buffer;}
+
   // extractX: extract X and set position right after X
   int extractNumber() {
     int posBegin = position();
-    while(isdigit(buffer[pos])){
-      ++pos;
-    }
+    for (;isdigit(buffer[pos]); ++pos);
     return stoi(buffer.substr(posBegin, pos-posBegin));
   }
 
   string extractAtom() {
     int posBegin = position();
-    while(isalnum(buffer[pos])){
-      ++pos;
-    }
+    for (;isalnum(buffer[pos]) || buffer[pos] == '_'; ++pos);
     return buffer.substr(posBegin, pos-posBegin);
   }
 
   string extractAtomSC() {
     int posBegin = position();
-    while(isSpecialCh(buffer[pos])){
-      ++pos;
-    }
+    for (;isSpecialCh(buffer[pos]); ++pos);
     return buffer.substr(posBegin, pos-posBegin);
   }
 
   string extractVar() {
     int posBegin = position();
-    while(isalnum(buffer[pos]) || buffer[pos] == '_'){
-      ++pos;
-    }  
+    for (;isalnum(buffer[pos]) || buffer[pos] == '_'; ++pos);
     return buffer.substr(posBegin, pos-posBegin);
   }
 
-  char extractChar() {  
+  char extractChar() {
     return buffer[pos++];
   }
 

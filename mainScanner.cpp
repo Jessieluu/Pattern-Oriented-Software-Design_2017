@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
-#include "expression.h"
-#include "exception.h"
+#include "utScanner.h"
+#include "utParser.h"
+#include "utExp.h"
 
 int main( int argc , char **argv )
 {
